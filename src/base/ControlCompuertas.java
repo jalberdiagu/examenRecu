@@ -23,6 +23,11 @@ public class ControlCompuertas {
 
 	}
 
+	/**
+	 *  Este metodo muestra un menu que contiene varias opciones de eleccion y no delvuelve nada
+	 * @param nivel lee el nivel del agua y lo muestra por consola
+	 * @author jalberdiagu
+	 */
 	public static void mostrarMenu(int nivel) {
 		int opcion = 0;
 		do {
