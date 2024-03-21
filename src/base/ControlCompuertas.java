@@ -1,6 +1,10 @@
 package base;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ControlCompuertas {
@@ -13,6 +17,16 @@ public class ControlCompuertas {
 	private static boolean compuertasVerificadas = false;
 
 	public static void main(String[] args) {
+		
+		try {
+			Handler fileHandler = new FileHandler("./logs/" + ControlCompuertas.leerNivelAgua() , true);
+		    fileHandler.setLevel(Level.ALL);
+		    LOGGER.addHandler(fileHandler);
+		}catch(SecurityException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		System.out.println(
 				"Este programa lee el nivel de agua de una presa y permite abrir compuertas si tenemos permiso (el nivel es superior a 50) y las compuertas están verificadas.");
@@ -78,6 +92,8 @@ public class ControlCompuertas {
 			}
 		} while (opcion != 5);
 	}
+	
+	
 
 	static int leerNivelAgua() {
 		permiso = false;
@@ -95,7 +111,7 @@ public class ControlCompuertas {
 	
 	static boolean solicitarPermiso(int nivel) {
 		if (nivel > 60) {
-			return true;
+			return true; 
 		}else {
 			return false;
 		}
